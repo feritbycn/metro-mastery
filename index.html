@@ -1,23 +1,35 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#101827"><meta name="description" content="Metro Mastery — renkleri eşleştir, trafiği çöz!">
-<title>Metro Mastery</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#101a2b"><meta name="description" content="Metro Mastery — otobüsleri doğru yolcularla eşleştir, trafiği çöz.">
+<title>Metro Mastery — Bus Puzzle</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
-<header class="topbar"><div class="brand"><div class="brandmark">M</div><div><b>METRO<span> MASTERY</span></b><small>TRAFİĞİ ÇÖZ. USTALAŞ.</small></div></div><button class="iconbtn" id="soundBtn" aria-label="Ses">♫</button><button class="wallet" id="shopBtn">🪙 <b id="coins">250</b> <span>＋</span></button></header>
-<section class="hero"><div class="eyebrow">ŞEHRİN KONTROLÜ SENDE</div><h1>Her yolcu<br><em>doğru otobüse.</em></h1><p>Renkleri eşleştir, yolu aç ve yeni bölgeleri keşfet.</p><div class="hero-stats"><div><small>BÖLÜM</small><b id="levelNum">01</b></div><div><small>ZORLUK</small><b id="difficulty">KOLAY</b></div><div><small>EN İYİ SERİ</small><b id="streak">0</b></div></div></section>
-<main>
-<div class="section-head"><div><small class="eyebrow">GÖREVİN</small><h2>Durak bulmacası</h2></div><div class="level-pill">BÖLÜM <b id="levelPill">01</b></div></div>
-<div class="gameboard"><div class="board-top"><span>YOLCU BEKLİYOR</span><span id="remaining">6 KİŞİ</span></div><div class="passengers" id="passengers"></div><div class="road"><div class="road-label">OTOBÜS ŞERİDİ</div><div class="buses" id="buses"></div></div><div class="board-foot"><span id="status">Bir otobüse dokunarak durağa çağır.</span><button id="restartBtn" class="mini-btn">↻ SIFIRLA</button></div></div>
-<div class="controls"><button class="primary" id="hintBtn"><span>✦</span><span>İpucu al<small>Reklam izle veya 40 🪙</small></span><b>›</b></button><button class="secondary" id="undoBtn">↶ Geri al</button></div>
-<section class="progress-card"><div class="progress-title"><div><small class="eyebrow">YOLCULUĞUN</small><h3>Şehir haritası</h3></div><b id="progressText">1 / 100</b></div><div class="progress-track"><div id="progressBar"></div></div><div class="districts"><span class="active">● Merkez</span><span>◉ Sahil</span><span>◉ Gece şehri</span></div></section>
-<section class="bottom-grid"><button class="feature" id="dailyBtn"><span class="feature-icon">🎁</span><b>Günlük ödül</b><small>Her gün yeni sürpriz</small></button><button class="feature" id="premiumBtn"><span class="feature-icon">👑</span><b>Metro Pro</b><small>Reklamsız ve ayrıcalıklı</small></button></section>
-</main>
-<nav class="nav"><button class="selected"><span>⌂</span>Ana Sayfa</button><button id="mapBtn"><span>⌖</span>Harita</button><button id="boostBtn"><span>✧</span>Güçlendirici</button><button id="profileBtn"><span>◉</span>Profil</button></nav>
+<div class="app-shell">
+  <header class="topbar">
+    <button class="round-btn" id="settingsBtn" aria-label="Ayarlar">⚙</button>
+    <div class="brand"><div class="brand-icon">M<span>↗</span></div><div><strong>METRO <i>MASTERY</i></strong><small>BUS PUZZLE</small></div></div>
+    <button class="wallet" id="shopBtn"><span>🪙</span><b id="coins">250</b><em>＋</em></button>
+  </header>
+  <section class="level-head">
+    <div><div class="eyebrow">ŞEHİR HATTI <span class="live-dot"></span></div><h1>Seviye <b id="levelNum">01</b></h1><p id="levelSubtitle">Otobüsleri sıraya göre çıkar.</p></div>
+    <div class="level-badge"><span>★</span><b id="stars">0</b><small>PUAN</small></div>
+  </section>
+  <div class="progress-wrap"><div class="progress-label"><span>ROTA İLERLEMESİ</span><b id="progressText">1 / 100</b></div><div class="progress-track"><i id="progressBar"></i></div></div>
+  <main>
+    <section class="scene-card">
+      <div class="scene-sky"><div class="sun"></div><div class="skyline skyline-back"></div><div class="skyline skyline-front"></div></div>
+      <div class="scene-caption"><span class="pill"><span class="pulse"></span> DURAKTA BEKLEYENLER</span><span class="passenger-count"><b id="remaining">24</b> yolcu</span></div>
+      <div class="queue-panel"><div class="queue-heading"><span>YOLCU KUYRUĞU</span><small>ÖNCE SIRADAKİ RENGE BAK</small></div><div class="passenger-queue" id="passengers" aria-label="Yolcu kuyruğu"></div><div class="queue-tail"><span class="tail-arrow">↓</span><span>SONRAKİ YOLCULAR</span><span class="tail-dots">•••</span></div></div>
+      <div class="road-scene"><div class="road-label"><span>OTOBÜS PARK ALANI</span><span id="parkingLabel">3 ARAÇ HAZIR</span></div><div class="road-lanes"><div class="lane-markings"></div><div class="bus-grid" id="buses"></div></div><div class="road-footer"><span class="traffic-light"><i></i><i></i><i></i></span><span id="status">Öndeki yolcunun rengindeki otobüse dokun.</span></div></div>
+    </section>
+    <section class="tool-row"><button class="tool-card" id="hintBtn"><span class="tool-icon hint-icon">✦</span><span><b>İpucu</b><small>40 🪙 veya reklam</small></span><strong>›</strong></button><button class="tool-card" id="undoBtn"><span class="tool-icon undo-icon">↶</span><span><b>Geri al</b><small>Son hamleyi düzelt</small></span><strong>›</strong></button><button class="tool-card" id="shuffleBtn"><span class="tool-icon shuffle-icon">⇄</span><span><b>Ek süre</b><small>Bir şans daha</small></span><strong>›</strong></button></section>
+    <section class="bottom-cards"><button class="daily-card" id="dailyBtn"><span class="gift">🎁</span><span><b>Günlük ödül</b><small>Ücretsiz altınını al</small></span><strong>＋</strong></button><button class="pro-card" id="premiumBtn"><span class="crown">♛</span><span><b>METRO PRO</b><small>Reklamsız oyun ve özel araçlar</small></span><strong>›</strong></button></section>
+  </main>
+  <nav class="bottom-nav"><button class="active" data-tab="home"><span>⌂</span>Ana Sayfa</button><button data-tab="map" id="mapBtn"><span>▦</span>Seviyeler</button><button data-tab="garage" id="garageBtn"><span>▰</span>Garaj</button><button data-tab="profile" id="profileBtn"><span>◉</span>Profil</button></nav>
 </div>
-<div class="modal hidden" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<div class="modal hidden" id="modal" role="dialog" aria-modal="true"><div class="modal-card"><button class="close" id="closeModal" aria-label="Kapat">×</button><div id="modalContent"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
 <script src="game.js"></script>
 </body></html>
