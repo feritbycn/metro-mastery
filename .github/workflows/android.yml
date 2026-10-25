@@ -1,0 +1,44 @@
+name: Build Android APK and AAB
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths-ignore: ['README.md']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install dependencies
+        run: npm install
+      - name: Build web assets
+        run: npm run build
+      - name: Add Android platform
+        run: npx cap add android
+      - name: Sync Android
+        run: npx cap sync android
+      - name: Build debug APK and release AAB
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug bundleRelease
+      - name: Upload APK and AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: metro-mastery-android
+          path: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            android/app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error

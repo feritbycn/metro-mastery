@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#101827"><meta name="description" content="Metro Mastery — renkleri eşleştir, trafiği çöz!">
+<title>Metro Mastery</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header class="topbar"><div class="brand"><div class="brandmark">M</div><div><b>METRO<span> MASTERY</span></b><small>TRAFİĞİ ÇÖZ. USTALAŞ.</small></div></div><button class="iconbtn" id="soundBtn" aria-label="Ses">♫</button><button class="wallet" id="shopBtn">🪙 <b id="coins">250</b> <span>＋</span></button></header>
+<section class="hero"><div class="eyebrow">ŞEHRİN KONTROLÜ SENDE</div><h1>Her yolcu<br><em>doğru otobüse.</em></h1><p>Renkleri eşleştir, yolu aç ve yeni bölgeleri keşfet.</p><div class="hero-stats"><div><small>BÖLÜM</small><b id="levelNum">01</b></div><div><small>ZORLUK</small><b id="difficulty">KOLAY</b></div><div><small>EN İYİ SERİ</small><b id="streak">0</b></div></div></section>
+<main>
+<div class="section-head"><div><small class="eyebrow">GÖREVİN</small><h2>Durak bulmacası</h2></div><div class="level-pill">BÖLÜM <b id="levelPill">01</b></div></div>
+<div class="gameboard"><div class="board-top"><span>YOLCU BEKLİYOR</span><span id="remaining">6 KİŞİ</span></div><div class="passengers" id="passengers"></div><div class="road"><div class="road-label">OTOBÜS ŞERİDİ</div><div class="buses" id="buses"></div></div><div class="board-foot"><span id="status">Bir otobüse dokunarak durağa çağır.</span><button id="restartBtn" class="mini-btn">↻ SIFIRLA</button></div></div>
+<div class="controls"><button class="primary" id="hintBtn"><span>✦</span><span>İpucu al<small>Reklam izle veya 40 🪙</small></span><b>›</b></button><button class="secondary" id="undoBtn">↶ Geri al</button></div>
+<section class="progress-card"><div class="progress-title"><div><small class="eyebrow">YOLCULUĞUN</small><h3>Şehir haritası</h3></div><b id="progressText">1 / 100</b></div><div class="progress-track"><div id="progressBar"></div></div><div class="districts"><span class="active">● Merkez</span><span>◉ Sahil</span><span>◉ Gece şehri</span></div></section>
+<section class="bottom-grid"><button class="feature" id="dailyBtn"><span class="feature-icon">🎁</span><b>Günlük ödül</b><small>Her gün yeni sürpriz</small></button><button class="feature" id="premiumBtn"><span class="feature-icon">👑</span><b>Metro Pro</b><small>Reklamsız ve ayrıcalıklı</small></button></section>
+</main>
+<nav class="nav"><button class="selected"><span>⌂</span>Ana Sayfa</button><button id="mapBtn"><span>⌖</span>Harita</button><button id="boostBtn"><span>✧</span>Güçlendirici</button><button id="profileBtn"><span>◉</span>Profil</button></nav>
+</div>
+<div class="modal hidden" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<script src="game.js"></script>
+</body></html>

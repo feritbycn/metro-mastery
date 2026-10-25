@@ -1,0 +1,1 @@
+const fs=require('fs'),path=require('path');const src=process.cwd(),dst=path.join(src,'www');fs.rmSync(dst,{recursive:true,force:true});fs.mkdirSync(dst,{recursive:true});for(const f of ['index.html','style.css','game.js','manifest.webmanifest'])fs.copyFileSync(path.join(src,f),path.join(dst,f));console.log('Web build ready: www/');

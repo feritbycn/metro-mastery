@@ -1,0 +1,6 @@
+{
+  "appId": "com.metromastery.game",
+  "appName": "Metro Mastery",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
